@@ -1,0 +1,13 @@
+sky:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    host: localhost
+    port: 3306
+    database: poetry
+    username: root
+    password: 123456
+  alioss:
+    endpoint: oss-cn-hangzhou.aliyuncs.com
+    access-key-id: LTAI5tPrxLuwy3o9ZebCoLr9
+    access-key-secret: AYHlLkYiqe6m0rmIoL5gPGY6e2pciO
+    bucket-name: yxbjavawebdemo

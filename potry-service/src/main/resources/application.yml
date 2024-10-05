@@ -1,0 +1,63 @@
+server:
+  port: 8080
+
+spring:
+  profiles:
+    active: dev
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    password: 123456
+    url: jdbc:mysql://localhost:3306
+    username: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  mail:
+    host: smtp.qq.com
+    username: 2186256471@qq.com
+    password: nswyisgxoqmyebjh
+    default-encoding: utf-8
+    properties:
+      mail:
+        smtp:
+          ssl:
+            enable: true
+          auth: true # 修改为true以启用SMTP身份验证
+          starttls: # 添加此行以启用STARTTLS，如果使用的是587端口
+            enable: true
+          socketFactory:
+            class: javax.net.ssl.SSLSocketFactory # 通常这可以省略，除非有特殊需求
+          port: 465 # 或者保持587并确保STARTTLS配置正确，根据QQ邮箱的实际要求
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.fuze.entity
+  configuration:
+    object-factory-type: org.apache.ibatis.reflection.factory.DefaultObje
+
+    map-underscore-to-camel-case: true
+
+logging:
+  level:
+    com:
+      sky:
+        mapper: trace
+        service: info
+        controller: info
+sky:
+  jwt:
+    # 设置jwt签名加密时使用的秘钥
+    admin-secret-key: hivtestnhky
+    # 设置jwt过期时间
+    admin-ttl: 9200000
+    # 设置前端传递过来的令牌名称
+    admin-token-name: token
+
+    userSecretKey: poemuserkey
+    userTtl: 9200000
+    userTokenName: token
+  alioss:
+    endpoint: ${sky.alioss.endpoint}
+    access-key-id: ${sky.alioss.access-key-id}
+    access-key-secret: ${sky.alioss.access-key-secret}
+    bucket-name: ${sky.alioss.bucket-name}
+
