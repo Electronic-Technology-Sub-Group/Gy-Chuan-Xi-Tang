@@ -16,7 +16,7 @@
     <properties>
 
         <mybatis.spring>3.0.3</mybatis.spring>
-        <lombok>1.18.20</lombok>
+        <lombok>1.18.30</lombok>
         <fastjson>1.2.76</fastjson>
         <commons.lang>2.6</commons.lang>
         <druid>1.2.1</druid>
@@ -35,7 +35,7 @@
         <commons.collections.version>3.2.2</commons.collections.version>
         <fastJson.version>1.2.83</fastJson.version>
         <hutool.version>5.7.22</hutool.version>
-        <lombok.version>1.18.10</lombok.version>
+
     </properties>
     <!--
     <dependencies>
@@ -220,12 +220,7 @@
                 <artifactId>commons-collections</artifactId>
                 <version>${commons.collections.version}</version>
             </dependency>
-            <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>${lombok.version}</version>
-                <scope>provided</scope>
-            </dependency>
+
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
