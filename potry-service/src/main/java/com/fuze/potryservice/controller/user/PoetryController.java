@@ -12,6 +12,7 @@ import io.swagger.annotations.ApiOperation;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -87,7 +88,7 @@ private PotryService potryService;
 
 
     }
-
+    @Cacheable
     @ApiOperation(value = "根据朝代获取古诗信息")
     @GetMapping("/GetPoemByDynasty/{dynasty}")
     public Result<List<PoemDataVo>>GetPoemByDynasty(@PathVariable String dynasty){
@@ -96,7 +97,7 @@ private PotryService potryService;
         log.info("根据朝代获取古诗信息执行:{}",PoemDATAlist);
         return Result.success(PoemDATAlist);
     }
-
+    @Cacheable
     @ApiOperation(value = "随机返回十条古诗数据")
     @GetMapping("/GetPoemDateRondom")
     public Result<List<PoemDataVo>>GetPoemDateRondom(){
@@ -118,6 +119,7 @@ private PotryService potryService;
     }
 
     //to 根据诗人查古诗还需要优化
+    @Cacheable
     @ApiOperation(value = "根据诗人查询古诗")
     @GetMapping("/GetPoemByWriter")
     public Result<List<PoemDataVo>>GetPoemByWriter(@RequestParam String name){
@@ -125,7 +127,7 @@ private PotryService potryService;
         return Result.success(list);
     }
 
-
+    @Cacheable
    @ApiOperation(value = "获取古诗的分类，因为一个古诗不仅仅一个分类,用于前端展示")
     @GetMapping("/GetTypeDotaVo")
    public Result<TypeDateVo> GetTypeDotaVo(){
@@ -149,19 +151,19 @@ private PotryService potryService;
 //       System.out.println(typeDateVo1);
        return Result.success(typeDateVo1);
     }
-
+    @Cacheable
     @ApiOperation(value = "根据传回的古诗分类获取古诗信息")
     @GetMapping("/GetPoemByType/{Type}")
     public  Result<List<PoemDataVo> >GetPoemByType(@PathVariable String Type){
         List<PoemDataVo> list=potryService.GetPoemDataByType(Type);
         return Result.success(list);
-    }
+    }@Cacheable
 @ApiOperation(value = "通过标题跳转到诗的详情页面")
     @GetMapping("/GetPoemContent/{title}")
     public Result<List<Poem>>GetPoemContent(@PathVariable String title){
         List<Poem> poem=potryService.GetContentBytitle(title);
         return Result.success(poem);
-    }
+    }@Cacheable
 @ApiOperation(value ="查寻诗人的详细生平事迹")
     @GetMapping("/GetPoemWriter/{name}")
     public Result<WriterVo> GetPoemWriter(@PathVariable String name){

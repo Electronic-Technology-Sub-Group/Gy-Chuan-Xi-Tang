@@ -9,6 +9,7 @@ import com.fuze.vo.WriterVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.springframework.cache.annotation.CacheEvict;
 
 import java.util.List;
 import java.util.Set;
@@ -28,7 +29,7 @@ public interface PotryMapper {
     List<String> Getdynasty();
 
     List<DynatryPoemResultVO> GetDynastyPoemResulVo();
-
+    @CacheEvict
     @Select("select id,title,writer,content,type from poem.potry where dynasty=#{dynasty}")
     List<PoemDataVo> GetPoemDataVoByDynasty(String dynasty);
     @Select("select id,title,writer,content,type from poem.potry order by rand() limit 10")
