@@ -9,11 +9,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class QuestionsGame {
+public class GameRank {
     private Integer id;
     private String userid;
-    private String grand;
-    private String coutTime;
-    private String usename;
-
+    private Integer score;
+    private String createtime;
+    private String username;
 }

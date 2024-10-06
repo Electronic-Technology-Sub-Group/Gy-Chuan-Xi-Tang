@@ -29,7 +29,7 @@ public interface PotryMapper {
     List<String> Getdynasty();
 
     List<DynatryPoemResultVO> GetDynastyPoemResulVo();
-    @CacheEvict
+
     @Select("select id,title,writer,content,type from poem.potry where dynasty=#{dynasty}")
     List<PoemDataVo> GetPoemDataVoByDynasty(String dynasty);
     @Select("select id,title,writer,content,type from poem.potry order by rand() limit 10")
@@ -42,7 +42,7 @@ public interface PotryMapper {
     List<PoemDataVo> GetPoemDataByType(String type);
 @Select("select * from  poem.potry where title like CONCAT('%',#{title},'%')")
     List<Poem>  GetContentByTitle(String title);
-@Select("select * from poem.potry order by  rand() limit 1")
+@Select("SELECT * FROM poem.potry WHERE id IN(SELECT id FROM (SELECT id FROM poem.potry ORDER BY RAND() LIMIT 10)t)limit 1")
     PoemDataVo GetVeryGoodPoem();
 //不使用模糊查询只有输入正确的名字才行
 @Select("SELECT * FROM poem.writer WHERE name=#{name}")
